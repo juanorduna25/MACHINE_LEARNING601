@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}ML Juan Orduña{% endblock %}</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        /* Estilos para iframes responsivos */
+        .ratio {
+            position: relative;
+            width: 100%;
+        }
+        .ratio::before {
+            display: block;
+            padding-top: var(--bs-aspect-ratio);
+            content: "";
+        }
+        .ratio > * {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: 0;
+        }
+        .ratio-16x9 {
+            --bs-aspect-ratio: 56.25%;
+        }
+    </style>
+    {% block extra_css %}{% endblock %}
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="/">Mi Sitio Web</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link {% if request.path == '/' %}active{% endif %}" href="/">Inicio</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link {% if request.path == '/diabetes' %}active{% endif %}" href="/diabetes">Diabetes</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link {% if request.path == '/clasificador-flores' %}active{% endif %}" href="/clasificador-flores">Flores</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link {% if request.path == '/mapa_mental' %}active{% endif %}" href="/mapa_mental">Mapa Mental</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Contenido principal que será reemplazado por los templates hijos -->
+    {% block content %}
+    <!-- Contenido de introducción (página de inicio) -->
+    <div class="container py-5">
+        <h1 class="text-center">Bienvenido a mis Proyectos de ML</h1>
+        <div class="row mt-5">
+            <div class="col-md-4 mb-4">
+                <div class="card h-100">
+                    <div class="card-header bg-primary text-white">
+                        <h5 class="mb-0">📊 Predicción de Diabetes</h5>
+                    </div>
+                    <div class="card-body">
+                        <p class="card-text">Modelo de regresión lineal que predice la progresión de diabetes basado en características médicas. Este proyecto utiliza el dataset de diabetes de scikit-learn y visualiza los resultados.</p>
+                        <a href="/diabetes" class="btn btn-primary">Ir al proyecto</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 mb-4">
+                <div class="card h-100">
+                    <div class="card-header bg-primary text-white">
+                        <h5 class="mb-0">🌸 Clasificador de Flores</h5>
+                    </div>
+                    <div class="card-body">
+                        <p class="card-text">Modelo de clasificación que identifica el tipo de flor Iris (Setosa, Versicolor o Virginica) basado en características como la longitud y ancho de sépalos y pétalos.</p>
+                        <a href="/clasificador-flores" class="btn btn-primary">Ir al proyecto</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 mb-4">
+                <div class="card h-100">
+                    <div class="card-header bg-primary text-white">
+                        <h5 class="mb-0">🧠 Mapa Mental</h5>
+                    </div>
+                    <div class="card-body">
+                        <p class="card-text">Mapa conceptual interactivo sobre Regresión Logística, una técnica de aprendizaje supervisado utilizada para problemas de clasificación. Explora los conceptos fundamentales de este algoritmo.</p>
+                        <a href="/mapa_mental" class="btn btn-primary">Ver mapa mental</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endblock %}
+
+    <footer class="bg-dark text-white text-center py-3">
+        <p>© 2025 Mi Sitio Web</p>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    {% block extra_js %}{% endblock %}
+</body>
+</html>
